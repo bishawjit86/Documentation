@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting Started &mdash; Autofac v0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CHAPTER TWO" href="chapter02.html" />
+    <link rel="prev" title="Welcome to Autofac’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Autofac
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-lifetime-scope-from-the-container">Create a lifetime scope from the container</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#structuring-the-application">Structuring the Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#for-our-sample-app">For our sample app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#first-step">First Step</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#add-autofac-references">Add Autofac References</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#image">Image</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="chapter02.html">CHAPTER TWO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter03.html">CHAPTER THREE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter04.html">CHAPTER FOUR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter05.html">CHAPTER FIVE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter06.html">CHAPTER SIX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter07.html">CHAPTER SEVEN</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Autofac</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Getting Started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/chapter01.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>The basic pattern for integrating Autofac into your application is:</p>
+<p>Structure your app with inversion of control (IoC) in mind.
+Add Autofac references.
+At application startup…
+Create a ContainerBuilder.
+Register components.
+Build the container and store it for later use.
+During application execution…</p>
+<div class="section" id="create-a-lifetime-scope-from-the-container">
+<h2>Create a lifetime scope from the container<a class="headerlink" href="#create-a-lifetime-scope-from-the-container" title="Permalink to this headline">¶</a></h2>
+<p>Use the lifetime scope to resolve instances of the components.
+This getting started guide walks you through these steps for a simple console application. Once you have the basics down, you can check out the rest of the wiki for more advanced usage and integration information for WCF, ASP.NET, and other application types.</p>
+<div class="section" id="structuring-the-application">
+<h3>Structuring the Application<a class="headerlink" href="#structuring-the-application" title="Permalink to this headline">¶</a></h3>
+<p>The idea behind inversion of control is that, rather than tie the classes in your application together and let classes “new up” their dependencies, you switch it around so dependencies are instead passed in during class construction. Martin Fowler has an excellent article explaining dependency injection/inversion of control if you want more on that.</p>
+<div class="section" id="for-our-sample-app">
+<h4>For our sample app<a class="headerlink" href="#for-our-sample-app" title="Permalink to this headline">¶</a></h4>
+<p>we’ll define a class that writes the current date out. However, we don’t want it tied to the Console because we want to be able to test the class later or use it in a place where the console isn’t available.</p>
+</div>
+<div class="section" id="first-step">
+<h4>First Step<a class="headerlink" href="#first-step" title="Permalink to this headline">¶</a></h4>
+<p>We’ll also go as far as allowing the mechanism writing the date to be abstracted, so if we want to, later, swap in a version that writes tomorrow’s date, it’ll be a snap.</p>
+</div>
+</div>
+<div class="section" id="add-autofac-references">
+<h3>Add Autofac References<a class="headerlink" href="#add-autofac-references" title="Permalink to this headline">¶</a></h3>
+<p>The first step is to add Autofac references to your project. For this example, we’re only using core Autofac. Other application types may use additional Autofac integration libraries..</p>
+<div class="section" id="image">
+<h4>Image<a class="headerlink" href="#image" title="Permalink to this headline">¶</a></h4>
+<p>The easiest way to do this is through NuGet. The “Autofac” package has all the core functionality you’ll need.</p>
+<img alt="_images/install-autofac.png" src="_images/install-autofac.png" />
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="chapter02.html" class="btn btn-neutral float-right" title="CHAPTER TWO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Autofac’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Bishawjit
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
